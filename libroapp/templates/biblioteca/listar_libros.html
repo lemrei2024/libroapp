@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Libros</title>
+</head>
+<body>
+   <center> <h1>Lista de Libros</h1></center>
+    <a href="{% url 'menu' %}">Volver al menú</a>
+    <center>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Código</th>
+                <th>Título</th>
+                <th>Autor</th>
+                <th>Fecha de Publicación</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for libro in libros %}
+                <tr>
+                    <td>{{ libro.codigo }}</td>
+                    <td>{{ libro.titulo }}</td>
+                    <td>{{ libro.autor }}</td>
+                    <td>{{ libro.fecha_publicacion }}</td>
+                    <td>
+                        <a href="{% url 'modificar_libro' libro.codigo %}">Modificar</a>
+                        <a href="{% url 'eliminar_libro' libro.codigo %}">Eliminar</a>
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="5">No hay libros disponibles</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table></center>
+</body>
+</html>
+
