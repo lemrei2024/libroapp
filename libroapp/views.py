@@ -16,7 +16,8 @@ def crear_libro(request):
         if form.is_valid():
             form.save()
             messages.success(request, '¡Libro guardado exitosamente!')
-            return redirect('listar_libros')
+            return render(request, 'biblioteca/crear_libro.html', {'form': form})        
+            #return redirect('listar_libros')
     else:
         form = LibroForm()
     return render(request, 'biblioteca/crear_libro.html', {'form': form})
